@@ -1,0 +1,565 @@
+RETAILFLOW - EXECUTIVE BRIEFING
+
+Test one shared picking zone for five
+jumbo-bag products
+COSC 31001 Data Visualization - Group Project 1
+Mohamed, Ahmed, Hasan and Hoang
+Revised November 4, 2026
+The retailer's fulfillment manager should test one shared picking zone for five frequently
+co-ordered jumbo-bag products, because the recorded orders identify a focused
+opportunity to measure faster picking during busy periods.
+
+Recommended action
+After a current-data and space check, run a two-week picking-zone pilot for the red
+retrospot jumbo bag and its four recurring companion products. Compare active picking
+time and accuracy with the current arrangement.
+
+Scope
+This is a historical case study of positive purchase invoices from January-November 2011. The data identifies recurring
+orders. It contains no warehouse locations, walking distances or measured picking times. The proposed benefit must be
+tested.
+
+RetailFlow - COSC 31001 Data Visualization
+
+1
+
+PHASE 1 - CONTEXT
+
+The fulfillment manager needs a
+focused place to test
+Audience question
+
+Project answer
+
+Decision-maker
+
+Fulfillment manager of the UK online retailer represented in the dataset.
+
+What they know
+
+Current warehouse locations, staffing, replenishment needs and handling
+constraints.
+
+What matters
+
+Picking orders efficiently while protecting accuracy and keeping shelves
+replenished.
+
+Likely resistance
+
+The five products may already be close together, may not fit the zone, or may no
+longer be current sellers.
+
+Communication
+
+A 12-minute operating briefing supported by this report. Plain language and
+readable product names.
+
+What the audience should do
+Approve one limited test after checking current orders and the physical picking
+arrangement. A small group gives the manager a reversible decision that can be measured
+before a wider change.
+
+Narrative
+The presentation moves from workload, to recurring product relationships, to a defined
+pilot. The exploratory notebook holds the wider analysis. Appendix A supplies the complete
+three-minute story and the initial and revised digital planning outlines.
+
+Big Idea
+The retailer's fulfillment manager should test one shared picking zone for five frequently
+co-ordered jumbo-bag products, because the recorded orders identify a focused
+opportunity to measure faster picking during busy periods.
+
+RetailFlow - COSC 31001 Data Visualization
+
+2
+
+PHASE 2 - DATA PREPARATION
+
+The source becomes a documented
+purchase cohort
+Chen (2015) provides the public Online Retail dataset through UCI. The eight original fields
+include an invoice date, product and country categories, quantity and unit price. The
+source is licensed CC BY 4.0. The unchanged workbook is included with its checksum.
+Sequential cleaning step
+
+Remaining
+
+Removed
+
+Source workbook
+
+541,909
+
+0
+
+Remove exact duplicate rows
+
+536,641
+
+5,268
+
+Valid invoice date
+
+536,641
+
+0
+
+Complete months Jan-Nov 2011
+
+469,414
+
+67,227
+
+Positive non-cancelled purchase lines
+
+459,054
+
+10,360
+
+Product-like stock codes
+
+456,599
+
+2,455
+
+Known description and country
+
+456,599
+
+0
+
+The cleaned cohort contains 456,599 purchase lines and 17,406 invoices. The operating
+analysis uses 15,716 UK invoices. Eight source fields plus seven derived fields give fifteen
+cleaned variables. No random sample was taken.
+The January-November restriction keeps complete months in one calendar year.
+Cancellation invoices and nonpositive quantities or prices leave the purchase cohort. A
+product-code rule removes administrative codes such as postage and can also exclude
+unusual merchandise codes.
+108,239 retained lines have missing customer IDs. They remain labelled Unknown because
+invoice numbers define baskets. Exact duplicate rows are removed as an explicit
+assumption. A purchase invoice is the unit of analysis; the data does not confirm a
+completed warehouse pick.
+
+RetailFlow - COSC 31001 Data Visualization
+
+3
+
+PHASE 2 - SELECTION METHOD
+
+Choose the five products before
+checking later orders
+A basket is one purchase invoice. A product is present once in that basket even if the
+quantity is large. This prevents one bulk order from counting as many separate
+co-purchases.
+Step
+
+Selection rule using January-August only
+
+1. Screen common
+products
+
+Start with the thirty products appearing in the most UK baskets.
+
+2. Screen recurring
+pairs
+
+Require at least 100 shared baskets and lift of at least 2. Rank by shared-basket
+count, then lift, then stock codes.
+
+3. Find an anchor
+
+Take the highest-ranked pair. Use its more frequent product as the anchor: the red
+retrospot jumbo bag.
+
+4. Form a small pilot
+
+Add the anchor's four strongest eligible companion products. This defines five
+products.
+
+5. Check the fixed
+group
+
+Recount the same products in September-November. Do not use those later counts to
+change the selected list.
+
+Why use lift in the screen?
+Two popular items may overlap simply because both are common. Lift divides observed
+shared baskets by an independence benchmark. A value of 2 means twice that benchmark,
+not twice the sales effect of a promotion. The formula and exact pair values appear in
+Appendix D.
+These are practical screening rules. The five-product limit keeps the proposed pilot small;
+it is not an optimized warehouse solution. The top-thirty screen can miss useful niche
+products. The later period checks persistence, while repeat customers and seasonality can
+still link the two periods.
+
+RetailFlow - COSC 31001 Data Visualization
+
+4
+
+PHASE 2 - WORKLOAD OVER TIME
+
+November handled about twice the
+earlier daily volume
+
+Chart description: Line chart of UK purchase invoices per calendar day in January-November 2011. Earlier months are muted,
+September-November is lightly shaded, the dashed January-August reference is directly labelled 40.4 per day, and November
+is directly labelled 82.7.
+
+The UK subset contains 9,815 invoices across the 243 calendar days in January-August.
+That is 40.4 invoices per calendar day. November contains 2,481 invoices across 30 days,
+or 82.7 per calendar day. The ratio is 2.05.
+Each month uses all its calendar days, including days with no retained invoices.
+Normalization avoids treating a longer month as automatically busier. Calendar days are
+not warehouse working days, and invoice counts do not measure staff utilization.
+
+Operating implication
+A busier order-entry period makes a focused efficiency test relevant. The graph does not
+establish that the warehouse was slow. A pilot must record actual pick times, staffing and
+replenishment conditions before any claim of improvement.
+
+RetailFlow - COSC 31001 Data Visualization
+
+5
+
+PHASE 2 - EXPLORATION
+
+The busiest single product does not
+define a picking group
+
+Chart description: Eight sorted horizontal bars use product names and directly labelled counts. The red retrospot jumbo bag
+is teal and labelled Pilot anchor at 1,776 invoices. Other products and structural elements are muted.
+
+The heart tea-light holder appears in 1,824 UK invoices, the highest frequency in the
+retained period. The red retrospot jumbo bag appears in 1,776. A one-product ranking
+describes demand, but it does not reveal which products appear on the same invoice.
+The product-pair analysis changes the question from which item is busy to which small
+group recurs together. This is the link between the recorded orders and the proposed
+shared picking zone.
+The displayed ranking uses the whole period for context. Selection itself uses
+January-August only. Readable short names improve the briefing, while the stock-code key
+preserves the exact identity of each product.
+
+RetailFlow - COSC 31001 Data Visualization
+
+6
+
+PHASE 2 - THE SELECTED GROUP
+
+Four companions turn the red bag into a
+five-product pilot
+
+Chart description: Sorted companion bars show pink polkadot 512, Suki 448, vintage paisley 430 and baroque black/white
+362 shared discovery invoices with the red jumbo bag. Teal and a direct Strongest link label identify the leading pair. Counts
+overlap in invoice identity.
+
+Code
+
+Selected product
+
+Jan-Aug invoices
+
+85099B
+
+JUMBO BAG RED RETROSPOT
+
+1,168
+
+22386
+
+JUMBO BAG PINK POLKADOT
+
+760
+
+21931
+
+JUMBO STORAGE BAG SUKI
+
+730
+
+22411
+
+JUMBO SHOPPER VINTAGE RED PAISLEY
+
+705
+
+85099C
+
+JUMBO BAG BAROQUE BLACK WHITE
+
+569
+
+The companion bars count invoices containing both the red bag and the named product. The four values add to 1,752 pair
+relationships. They represent 838 distinct red-bag invoices with at least one companion, because the same invoice can
+contain several designs.
+The names describe the resulting group as jumbo bags. The source supplies no formal product taxonomy. The selection
+comes from recorded co-purchases, rather than an invented category label.
+
+RetailFlow - COSC 31001 Data Visualization
+
+7
+
+PHASE 2 - CONFIRMATION
+
+The product group remains linked in the
+later period
+
+Chart description: Slopegraph retains a full 0-to-100 percent scale. The selection endpoint is muted at 71.7 percent, 838 of
+1,168 invoices. The later endpoint is teal at 64.5 percent, 392 of 608. A direct annotation states the 7.3-percentage-point
+decrease.
+
+Period
+
+Red-bag invoices
+
+With another pilot product
+
+Share
+
+Jan-Aug
+
+1,168
+
+838
+
+71.7%
+
+Sep-Nov
+
+608
+
+392
+
+64.5%
+
+The share falls by 7.3 percentage points. This is evidence of variation, not failure of the
+arithmetic. The later period still contains 392 red-bag invoices with a companion, and 478
+invoices containing at least two of the five selected products.
+The later-period group accounts for 8.1% of UK invoices, compared with 11.1% in the
+selection period. The proposal remains a focused trial, not a claim that this product group
+dominates the workload or maintains a fixed share.
+
+RetailFlow - COSC 31001 Data Visualization
+
+8
+
+PHASE 2 - NETWORK
+
+The network shows purchases together,
+not warehouse routes
+
+Chart description: NetworkX graph uses readable product names inside five nodes. Teal anchor links and a thicker teal
+outline focus the red jumbo bag. Other relationships are light grey. Edge width encodes shared discovery invoices, and node
+area encodes displayed weighted degree plus a base.
+
+Each node represents one selected product. An undirected edge joins two products
+appearing on the same discovery-period invoice. Edge width represents shared invoices.
+Node area uses a small base plus displayed weighted degree, which sums the incident
+edge weights (NetworkX Developers, n.d.).
+The red bag uses teal and a thicker outline. Product names sit inside their nodes, while teal
+links connect to the anchor. The five-product display keeps the group easy to identify and
+avoids a dense catalogue-wide diagram.
+The layout is schematic. It supplies no evidence about current shelf locations, physical
+distance, walking paths or the order in which a worker collects products. Multiple edges
+may refer to the same invoice. The edge list and product key accompany the data.
+
+RetailFlow - COSC 31001 Data Visualization
+
+9
+
+PHASE 2 - HIERARCHY AND SCOPE
+
+A small pilot covers about one in ten UK
+invoices
+
+Chart description: An editable-data tree partitions 17,406 invoices into 15,716 UK and 1,690 international. UK leaves are
+12,918 with none of the selected products, 1,234 with one, and 1,564 with at least two. The pilot leaf is teal and labelled 10.0
+percent.
+
+Across the complete retained period, 1,564 distinct UK invoices contain at least two
+selected products. That is 10.0% of the 15,716 UK invoices. It is a historical count of
+potentially relevant purchase tasks, not a count of minutes saved.
+The hierarchy first separates UK and international invoices. It then partitions UK invoices
+into no selected products, exactly one selected product, and two or more. Each invoice
+belongs to exactly one leaf and all leaves reconcile to their parent.
+Orders with only one selected product can still be affected by moving that product, while
+replenishment staff may face extra work. The trial should therefore track wider handling
+effects, not only the multi-product orders used to justify the pilot.
+
+RetailFlow - COSC 31001 Data Visualization
+
+10
+
+PHASE 2 - MULTIVARIATE VIEW
+
+Product value and price describe a
+different operating question
+
+Chart description: Two scatterplot facets share both scales and divide products by median unit price. Context points are
+muted. An outlined point and direct red-bag label identify the anchor without colour alone.
+
+Each point represents a UK product. The horizontal axis gives invoice frequency and the
+vertical axis gives retained gross purchase value. Two panels separate median recorded
+unit prices below GBP 3 from GBP 3 or above, using identical scales. An outline identifies
+the red jumbo bag.
+Frequency, purchase value and unit price provide three variables in one faceted view.
+Products with fewer invoices can have substantial gross value because quantities and
+prices differ. A high-value product is not automatically the best product to move into a
+shared picking zone.
+Gross purchase value is quantity multiplied by price for retained positive lines. It excludes
+cancellation deductions and product costs. The analysis uses co-purchase relationships to
+choose a trial group, then requires observed warehouse time and accuracy to judge the
+trial.
+
+RetailFlow - COSC 31001 Data Visualization
+
+11
+
+PHASES 3 AND 4 - CLARITY AND ATTENTION
+
+The design puts the operating
+comparison first
+The report applies the context, visual-choice, clutter, attention and design sequence
+assigned from Knaflic (2015). The briefing uses ordinary product names, directly labelled
+values and one recommended action. The lift formula stays in the supporting methods.
+Display
+
+Clutter removed
+
+Gestalt and attention cue
+
+Monthly workload
+
+Shorten dates, remove repeated markers, lighten
+gridlines, remove borders, add one weighted
+baseline and a November annotation.
+
+Continuity and connection preserve
+time order. Proximity links the
+annotation to the peak.
+
+Companion ranking
+
+Replace vertical code labels with horizontal
+product names. Remove the heavy grid and print
+counts at bar ends.
+
+Proximity joins each number to its
+bar. Similarity groups the four
+companion relationships.
+
+Later-period slope
+
+Use one line and two labelled percentages with a
+0-100% scale.
+
+Connection preserves the same
+definition across periods.
+
+Network
+
+Limit the view to five selected products and label
+them directly.
+
+Node area encodes a metric. Colour
+plus outline identifies the anchor.
+
+Colour, alignment and white space
+Grey supplies context and teal identifies the main comparison. Direct labels replace
+unnecessary legends. Lighter axes and gridlines let the data carry more visual weight. The
+opening overview gives the workload the largest panel, with scope and confirmation
+alongside it. The design follows the lecture guidance on hierarchy, restrained colour and
+multi-panel layouts (Rahman, n.d.). Labels, position and outlines preserve meaning without
+colour.
+
+Attention test
+Appendix F provides a three-second attention-test record for each final chart. The test
+checks the first item noticed and the message understood, followed by revisions and a
+retest where necessary.
+
+RetailFlow - COSC 31001 Data Visualization
+
+12
+
+PHASE 5 - OPERATING PILOT
+
+A two-week trial should measure time
+and accuracy
+Stage
+
+Proposed operating step
+
+Before the trial
+
+Refresh the product list using current orders. Confirm current picking locations, zone
+capacity and replenishment needs. Agree a minimum useful improvement and the
+measurement rules.
+
+Ten working days
+
+If the layout permits, retain normal locations and put limited pilot stock in the shared
+zone. Randomly assign eligible tasks to current or zone picking, balanced across pickers
+and shifts. Keep task contents comparable.
+
+Primary outcome
+
+Active pick seconds per eligible invoice, measured from a consistent start and finish.
+Compare task distributions and report uncertainty, rather than only one average.
+
+Guardrails
+
+Wrong-item rate, missing-item/stockout events and replenishment labour. Check
+handling effects for single-product orders as well.
+
+Decision
+
+Keep the change only if the measured time benefit meets the agreed operating target
+without unacceptable error or replenishment harm. Otherwise revise or stop the trial.
+
+Winning acceptance
+Start with the familiar product ranking, then show the companion counts. Let the manager
+inspect actual current locations before asking for a change. Demonstrate the limited
+product list and a reversible trial rather than a warehouse-wide redesign.
+
+Accessibility
+Slides use at least 18 pt text, one font and editable charts. The palette was checked with
+colour-vision simulations. Labels, position and outlines preserve meaning without colour.
+Each report chart has a written description.
+
+RetailFlow - COSC 31001 Data Visualization
+
+13
+
+RECOMMENDATION AND REFERENCES
+
+Approve one measured picking-zone
+pilot
+The records show a busier historical order-entry period and a small set of products
+repeatedly purchased together. The later-period check supports keeping the same group
+under consideration, while its lower share cautions against assuming constant demand.
+The requested decision is one two-week trial for the five-product group after a current-data
+and physical-layout check. No warehouse change or time saving has been observed in this
+project. The trial turns the descriptive pattern into a question the fulfillment manager can
+answer.
+
+Reproducibility
+The Code ZIP includes the analysis script, executed notebook, generated charts, speaker
+notes and dependency versions. The Data ZIP includes the unchanged workbook, cleaned
+lines, selection and confirmation tables, invoice-level pilot counts, dictionaries and source
+manifest.
+
+References
+Chen, D. (2015). Online Retail [Data set]. UCI Machine Learning Repository.
+https://doi.org/10.24432/C5BW33
+Knaflic, C. N. (2015). Storytelling with data: A data visualization guide for business
+professionals. Wiley.
+Rahman, S. M. M. (n.d.). Static visualization techniques [Lecture slides]. Durham College.
+NetworkX Developers. (n.d.). Graph.degree. NetworkX documentation. Retrieved
+November 4, 2026, from https://networkx.org/documentation/stable/reference/classes/gen
+erated/networkx.Graph.degree.html
+Source access: November 4, 2026. Licence: CC BY 4.0. Cleaning and derived-table changes are documented.
+
+RetailFlow - COSC 31001 Data Visualization
+
+14
+
